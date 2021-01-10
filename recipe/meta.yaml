@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "0.8.3" %}
+{% set version = "0.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c4916d17a8f0f8fc8d712af372dfc5eb4544e73044ecb9d5fca940b5c121bb88
+  sha256: e5dd4cde0441a2207ce10e9dc463449d94db6108647d810e6673e2e4eb7a43f7
 
 build:
-  number: 2
+  number: 0
   skip: true  # [py27]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
