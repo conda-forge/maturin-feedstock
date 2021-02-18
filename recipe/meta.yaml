@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "0.9.1" %}
+{% set version = "0.9.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3232d842396a2756bb5f0d147f7230a9efd84498b7c98c00262a70b816b2b957
+  sha256: 2e0b0c3eb233e7b776c004ee4b980907beaf2babbe21da05a60ac55c1dff46c3
 
 build:
   number: 0
