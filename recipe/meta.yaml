@@ -14,7 +14,7 @@ build:
   skip: true  # [py27]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-use-pep517 --ignore-installed -vv
 
 requirements:
   build:
@@ -29,6 +29,7 @@ requirements:
     - toml
   run:
     - python
+    - toml
 
 test:
   commands:
