@@ -24,7 +24,7 @@ requirements:
     # seems to work with defaults from conda-forge-pinning (at the moment)
     - rust  # [not osx]
     # investigating...
-    - rust >=1.52  # [osx]
+    - rust >=1.54  # [osx]
   host:
     - pip
     - python
