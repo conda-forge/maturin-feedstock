@@ -22,7 +22,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}              # [unix]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{ compiler('rust') }}
+    - rust
   host:
     - pip
     - python
