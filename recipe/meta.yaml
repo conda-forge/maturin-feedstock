@@ -14,7 +14,6 @@ build:
   skip: true  # [py27]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
 
 requirements:
   build:
@@ -22,7 +21,10 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}              # [unix]
     - {{ compiler('m2w64_c') }}        # [win]
-    - rust >=1.53
+    # seems to work with defaults from conda-forge-pinning (at the moment)
+    - rust  # [not osx]
+    # investigating...
+    - rust 1.50.*  # [osx]
   host:
     - pip
     - python
