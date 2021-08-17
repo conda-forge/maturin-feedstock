@@ -324,4 +324,5 @@ Feedstock Maintainers
 =====================
 
 * [@apcamargo](https://github.com/apcamargo/)
+* [@messense](https://github.com/messense/)
 
