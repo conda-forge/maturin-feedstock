@@ -28,10 +28,10 @@ requirements:
   host:
     - pip
     - python
-    - toml
+    - tomli
   run:
     - python
-    - toml >=0.10.2,<0.11
+    - tomli
 
 test:
   commands:
