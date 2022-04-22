@@ -27,11 +27,12 @@ requirements:
     - rust >=1.54  # [osx]
   host:
     - pip
+    - setuptools >=53.0.0,<54.0.0
     - python
-    - tomli
+    - tomli >=1.1.0
   run:
     - python
-    - tomli
+    - tomli >=1.1.0
 
 test:
   commands:
@@ -48,3 +49,4 @@ about:
 extra:
   recipe-maintainers:
     - apcamargo
+    - synapticarbors
