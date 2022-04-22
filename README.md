@@ -345,4 +345,5 @@ Feedstock Maintainers
 =====================
 
 * [@apcamargo](https://github.com/apcamargo/)
+* [@synapticarbors](https://github.com/synapticarbors/)
 
