@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "0.12.11" %}
+{% set version = "0.12.12" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 8602d28df0312ca703fea6eb347d37aa511342fc32234b6d6b73053b66fcdf26
+  sha256: c7ace888bedc106ae37d86a1639aae8f034498c96940bf52dc2451b6fffac851
 
 build:
   number: 0
@@ -27,11 +27,16 @@ requirements:
     - rust >=1.54  # [osx]
   host:
     - pip
+    # upstream pyproject.toml specifies versions below, but unavailable via conda-forge channel
+    # - setuptools >=53.0.0,<54.0.0
+    # latest version of setuptools fails, so pinning to slightly older version as suggested in:
+    # https://github.com/pypa/setuptools/issues/3199
+    - setuptools <=60.10.0
     - python
-    - tomli
+    - tomli >=1.1.0
   run:
     - python
-    - tomli
+    - tomli >=1.1.0
 
 test:
   commands:
@@ -48,3 +53,4 @@ about:
 extra:
   recipe-maintainers:
     - apcamargo
+    - synapticarbors
