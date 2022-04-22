@@ -27,7 +27,11 @@ requirements:
     - rust >=1.54  # [osx]
   host:
     - pip
-    - setuptools >=53.0.0,<54.0.0
+    # upstream pyproject.toml specifies versions below, but unavailable via conda-forge channel
+    # - setuptools >=53.0.0,<54.0.0
+    # latest version of setuptools fails, so pinning to slightly older version as suggested in:
+    # https://github.com/pypa/setuptools/issues/3199
+    - setuptools <=60.10.0
     - python
     - tomli >=1.1.0
   run:
