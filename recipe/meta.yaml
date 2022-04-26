@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [py27]
+  skip: true  # [py==27]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
 
