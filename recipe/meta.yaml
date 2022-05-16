@@ -32,6 +32,7 @@ requirements:
     # latest version of setuptools fails, so pinning to slightly older version as suggested in:
     # https://github.com/pypa/setuptools/issues/3199
     - setuptools <=60.10.0
+    - setuptools-rust
     - python
     - tomli >=1.1.0
   run:
