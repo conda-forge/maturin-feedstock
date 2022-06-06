@@ -21,10 +21,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}              # [unix]
     - {{ compiler('m2w64_c') }}        # [win]
-    # seems to work with defaults from conda-forge-pinning (at the moment)
-    - rust  # [not osx]
-    # investigating...
-    - rust >=1.54  # [osx]
+    - {{ compiler('rust') }}
   host:
     - pip
     # upstream pyproject.toml specifies versions below, but unavailable via conda-forge channel
@@ -32,6 +29,7 @@ requirements:
     # latest version of setuptools fails, so pinning to slightly older version as suggested in:
     # https://github.com/pypa/setuptools/issues/3199
     - setuptools <=60.10.0
+    - setuptools_rust
     - python
     - tomli >=1.1.0
   run:
