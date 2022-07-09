@@ -1,13 +1,13 @@
 {% set name = "maturin" %}
-{% set version = "0.13.0b9" %}
+{% set version = "0.13.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-0.13.0_beta.9.tar.gz
-  sha256: dffe337a1d34aa1e2260d87535ba8cae3825d73a5aec8477cb88b3432c5b7591
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: b9dd0d4d5da97985533eb682cab4134e04369c6db3d7a2e2a819a02e9f1d962c
 
 build:
   number: 0
