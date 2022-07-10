@@ -12,4 +12,8 @@ REM set UTF-8 mode by default
 chcp 65001
 set PYTHONUTF8=1
 set PYTHONIOENCODING="UTF-8"
+
+REM https://github.com/rust-lang/cargo/issues/10583#issuecomment-1129997984
+set CARGO_NET_GIT_FETCH_WITH_CLI=true
+
 %PYTHON% -m pip install . --no-deps --ignore-installed -vv
