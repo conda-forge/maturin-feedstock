@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "0.11.5" %}
+{% set version = "0.13.2" %}
 
 package:
   name: {{ name }}
@@ -7,31 +7,29 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 07074778b063a439fdfd5501bd1d1823a216ec5b657d3ecde78fd7f2c4782422
+  sha256: 18882138e633d32e7a18d147ec38c71930db254817f3714e9fd70e01e379e255
 
 build:
-  number: 1
-  skip: true  # [py27]
+  number: 0
+  skip: True  # [py<37]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}              # [unix]
     - {{ compiler('m2w64_c') }}        # [win]
-    # seems to work with defaults from conda-forge-pinning (at the moment)
-    - rust  # [not osx]
-    # investigating...
-    - rust >=1.54  # [osx]
+    - {{ compiler('rust') }}
   host:
     - pip
     - python
-    - toml
+    - setuptools
+    - setuptools-rust >=1.4.0
+    - wheel >=0.36.2
+    - tomli >=1.1.0
   run:
     - python
-    - toml >=0.10.2,<0.11
+    - tomli >=1.1.0
 
 test:
   commands:
