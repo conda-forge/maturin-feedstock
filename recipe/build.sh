@@ -2,10 +2,10 @@
 # https://github.com/conda-forge/pysyntect-feedstock/
 set -ex
 
-# Set conda CC as custom CC in Rust
-export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=$CC
-export CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER=$CC
-export CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER=$CC
+# Set up rust environment
+export CARGO_HOME=${CONDA_PREFIX}/.cargo.$(uname)
+export CARGO_CONFIG=${CARGO_HOME}/config
+export RUSTUP_HOME=${CARGO_HOME}/rustup
 
 # Print Rust version
 rustc --version
