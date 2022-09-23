@@ -11,7 +11,9 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<37]
+  # ring (dependency loaded via cargo) is not supported on s390x yet
+  # https://github.com/briansmith/ring/issues/1511
+  skip: True  # [py<37 or s390x]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
 
