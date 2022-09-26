@@ -34,6 +34,8 @@ requirements:
     - tomli >=1.1.0
 
 test:
+  requires:
+    - posix  # [win]
   commands:
     - maturin --help
 
