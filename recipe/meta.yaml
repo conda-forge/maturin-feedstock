@@ -2,7 +2,7 @@
 {% set version = "0.13.3" %}
 
 package:
-  name: {{ name }}
+  name: {{ name }}-suite
   version: {{ version }}
 
 source:
@@ -14,30 +14,53 @@ build:
   # ring (dependency loaded via cargo) is not supported on s390x yet
   # https://github.com/briansmith/ring/issues/1511
   skip: True  # [py<37 or s390x]
-  missing_dso_whitelist:   # [osx]
-    - /usr/lib/libresolv.9.dylib  # [osx]
 
-requirements:
-  build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('rust') }}
-  host:
-    - pip
-    - python
-    - setuptools
-    - setuptools-rust >=1.4.0
-    - wheel >=0.36.2
-    - tomli >=1.1.0
-  run:
-    - python
-    - tomli >=1.1.0
 
-test:
-  requires:
-    - posix  # [win]
-  commands:
-    - maturin --help
+outputs:
+  - name: {{ name }}
+    script: bld-win.bat                  # [win]
+    script: build-unix.sh                # [not win]
+    missing_dso_whitelist:   # [osx]
+      - /usr/lib/libresolv.9.dylib  # [osx]
+    requirements:
+      host:
+        - pip
+        - python
+        - setuptools
+        - setuptools-rust >=1.4.0
+        - wheel >=0.36.2
+        - tomli >=1.1.0
+      run:
+        - python
+        - tomli >=1.1.0
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('rust') }}     # [not win]
+        - rust_win-64                # [win]
+    test:
+      commands:
+        - maturin --help
+  - name: {{ name }}-gnu               # [win]
+    script: bld-win.bat                # [win]
+    requirements:                      # [win]
+      host:                            # [win]
+        - pip                          # [win]
+        - python                       # [win]
+        - setuptools                   # [win]
+        - setuptools-rust >=1.4.0      # [win]
+        - wheel >=0.36.2               # [win]
+        - tomli >=1.1.0                # [win]
+      run:                             # [win]
+        - python                       # [win]
+        - tomli >=1.1.0                # [win]
+      build:                           # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - rust-gnu_win-64              # [win]
+    test:                              # [win]
+      requires:                        # [win]
+        - posix                        # [win]
+      commands:                        # [win]
+        - maturin --help               # [win]
 
 about:
   home: https://maturin.rs/
