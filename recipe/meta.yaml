@@ -10,7 +10,7 @@ source:
   sha256: edeb8ecaa5cc6e6d2f50a32289798d7ca046c33481ac24f74805ff289af6afe4
 
 build:
-  number: 1
+  number: 0
   # ring (dependency loaded via cargo) is not supported on s390x yet
   # https://github.com/briansmith/ring/issues/1511
   skip: True  # [py<37 or s390x]
