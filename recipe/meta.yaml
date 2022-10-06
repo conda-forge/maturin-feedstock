@@ -57,8 +57,6 @@ outputs:
         - {{ compiler('m2w64_c') }}    # [win]
         - rust-gnu_win-64              # [win]
     test:                              # [win]
-      requires:                        # [win]
-        - posix                        # [win]
       commands:                        # [win]
         - maturin --help               # [win]
 
