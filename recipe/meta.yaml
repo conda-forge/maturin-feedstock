@@ -69,8 +69,12 @@ about:
   license_file: license-mit
   summary: >-
     Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages
+  description: |
+    This project is meant as a zero configuration replacement for setuptools-rust and milksnake.
+    It supports building wheels for python 3.5+ on windows, linux, mac and freebsd, can upload them to pypi and has basic pypy support.
   dev_url: https://github.com/PyO3/maturin
   doc_url: https://maturin.rs/
+  doc_source_url: https://github.com/PyO3/maturin/tree/v{{ version }}/guide/src
 
 extra:
   recipe-maintainers:
