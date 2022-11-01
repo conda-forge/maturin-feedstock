@@ -38,6 +38,8 @@ outputs:
         - {{ compiler('rust') }}     # [not win]
         - rust_win-64                # [win]
     test:
+      requires:
+        - pip
       commands:
         - maturin --help
         - pip check
@@ -58,6 +60,8 @@ outputs:
         - {{ compiler('m2w64_c') }}    # [win]
         - rust-gnu_win-64              # [win]
     test:                              # [win]
+      requires:                        # [win]
+        - pip                          # [win]
       commands:                        # [win]
         - maturin --help               # [win]
         - pip check                    # [win]
