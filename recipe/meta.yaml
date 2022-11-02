@@ -23,6 +23,10 @@ outputs:
     missing_dso_whitelist:   # [osx]
       - /usr/lib/libresolv.9.dylib  # [osx]
     requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('rust') }}     # [not win]
+        - rust_win-64                # [win]
       host:
         - pip
         - python
@@ -33,10 +37,6 @@ outputs:
       run:
         - python
         - tomli >=1.1.0
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('rust') }}     # [not win]
-        - rust_win-64                # [win]
     test:
       imports:
         - maturin
@@ -50,6 +50,9 @@ outputs:
   - name: {{ name }}-gnu               # [win]
     script: bld-win.bat                # [win]
     requirements:                      # [win]
+      build:                           # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - rust-gnu_win-64              # [win]
       host:                            # [win]
         - pip                          # [win]
         - python                       # [win]
@@ -60,9 +63,6 @@ outputs:
       run:                             # [win]
         - python                       # [win]
         - tomli >=1.1.0                # [win]
-      build:                           # [win]
-        - {{ compiler('m2w64_c') }}    # [win]
-        - rust-gnu_win-64              # [win]
     test:                              # [win]
       imports:                         # [win]
         - maturin                      # [win]
