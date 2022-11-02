@@ -13,7 +13,7 @@ build:
   number: 0
   # ring (dependency loaded via cargo) is not supported on s390x yet
   # https://github.com/briansmith/ring/issues/1511
-  skip: True  # [py<37 or s390x]
+  skip: True  # [py<37 or s390x or py>310]
 
 
 outputs:
