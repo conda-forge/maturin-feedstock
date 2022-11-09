@@ -1,49 +1,92 @@
 {% set name = "maturin" %}
-{% set version = "0.11.5" %}
+{% set version = "0.13.7" %}
 
 package:
-  name: {{ name }}
+  name: {{ name }}-suite
   version: {{ version }}
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 07074778b063a439fdfd5501bd1d1823a216ec5b657d3ecde78fd7f2c4782422
+  sha256: c0a77aa0c57f945649ca711c806203a1b6888ad49c2b8b85196ffdcf0421db77
 
 build:
-  number: 1
-  skip: true  # [py27]
-  missing_dso_whitelist:   # [osx]
-    - /usr/lib/libresolv.9.dylib  # [osx]
+  number: 0
+  # ring (dependency loaded via cargo) is not supported on s390x yet
+  # https://github.com/briansmith/ring/issues/1511
+  skip: True  # [py<37 or s390x or py>310]
 
-requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - {{ compiler('c') }}              # [unix]
-    - {{ compiler('m2w64_c') }}        # [win]
-    # seems to work with defaults from conda-forge-pinning (at the moment)
-    - rust  # [not osx]
-    # investigating...
-    - rust >=1.54  # [osx]
-  host:
-    - pip
-    - python
-    - toml
-  run:
-    - python
-    - toml >=0.10.2,<0.11
 
-test:
-  commands:
-    - maturin --help
+outputs:
+  - name: {{ name }}
+    script: bld-win.bat                  # [win]
+    script: build-unix.sh                # [not win]
+    missing_dso_whitelist:   # [osx]
+      - /usr/lib/libresolv.9.dylib  # [osx]
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('rust') }}     # [not win]
+        - rust_win-64                # [win]
+      host:
+        - pip
+        - python
+        - setuptools
+        - setuptools-rust >=1.4.0
+        - wheel >=0.36.2
+        - tomli >=1.1.0
+      run:
+        - python
+        - tomli >=1.1.0
+    test:
+      imports:
+        - maturin
+      requires:
+        - pip
+      commands:
+        - maturin -V
+        - maturin --help
+        - maturin build --help
+        - pip check
+  - name: {{ name }}-gnu               # [win]
+    script: bld-win.bat                # [win]
+    requirements:                      # [win]
+      build:                           # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - rust-gnu_win-64              # [win]
+      host:                            # [win]
+        - pip                          # [win]
+        - python                       # [win]
+        - setuptools                   # [win]
+        - setuptools-rust >=1.4.0      # [win]
+        - wheel >=0.36.2               # [win]
+        - tomli >=1.1.0                # [win]
+      run:                             # [win]
+        - python                       # [win]
+        - tomli >=1.1.0                # [win]
+    test:                              # [win]
+      imports:                         # [win]
+        - maturin                      # [win]
+      requires:                        # [win]
+        - pip                          # [win]
+      commands:                        # [win]
+        - maturin -V                   # [win]
+        - maturin --help               # [win]
+        - maturin build --help         # [win]
+        - pip check                    # [win]
 
 about:
-  home: https://github.com/PyO3/maturin
-  license: MIT
+  home: https://maturin.rs/
+  license: MIT OR Apache-2.0
   license_family: MIT
   license_file: license-mit
   summary: >-
     Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages
+  description: |
+    This project is meant as a zero configuration replacement for setuptools-rust and milksnake.
+    It supports building wheels for python 3.5+ on windows, linux, mac and freebsd, can upload them to pypi and has basic pypy support.
+  dev_url: https://github.com/PyO3/maturin
+  doc_url: https://maturin.rs/
+  doc_source_url: https://github.com/PyO3/maturin/tree/v{{ version }}/guide/src
 
 extra:
   recipe-maintainers:

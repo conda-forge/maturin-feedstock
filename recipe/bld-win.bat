@@ -1,9 +1,16 @@
 REM Based on bld.bat from pysyntect-feedstock
 REM https://github.com/conda-forge/pysyntect-feedstock/
 
+REM Set up rust environment
+set CARGO_HOME=%CONDA_PREFIX%\.cargo.win
+set CARGO_CONFIG=%CARGO_HOME%\config
+set RUSTUP_HOME=%CARGO_HOME%\rustup
+
+echo "Building %PKG_NAME%"
+
 REM Create temp folder
-mkdir tmpbuild_%PY_VER%
-set TEMP=%CD%\tmpbuild_%PY_VER%
+mkdir %CD%\tmpbuild_%PKG_NAME%_%PY_VER%
+set TEMP=%CD%\tmpbuild_%PKG_NAME%_%PY_VER%
 
 REM Print Rust version
 rustc --version
