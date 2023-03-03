@@ -1,11 +1,11 @@
-About maturin
-=============
+About maturin-feedstock
+=======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/maturin-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/PyO3/maturin
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/maturin-feedstock/blob/main/LICENSE.txt)
 
 Summary: Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages
 
