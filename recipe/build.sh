@@ -13,5 +13,8 @@ rustc --version
 # https://github.com/rust-lang/cargo/issues/10583#issuecomment-1129997984
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 
+export OPENSSL_NO_VENDOR=1
+export MATURIN_SETUP_ARGS="--no-default-features --features=full,native-tls"
+
 # Install wheel manually
 $PYTHON -m pip install . --no-deps --ignore-installed -vv
