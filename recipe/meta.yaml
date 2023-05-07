@@ -22,12 +22,14 @@ requirements:
     - {{ compiler('c') }}              # [unix]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('rust') }}
+    - openssl                          # [unix]
   host:
     - pip
     - setuptools-rust
     - wheel
     - python
     - tomli >=1.1.0
+    - openssl                          # [unix]
   run:
     - python
     - tomli >=1.1.0
