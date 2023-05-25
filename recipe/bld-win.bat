@@ -19,4 +19,4 @@ REM set UTF-8 mode by default
 chcp 65001
 set PYTHONUTF8=1
 set PYTHONIOENCODING="UTF-8"
-%PYTHON% -m pip install . --no-deps --ignore-installed -vv
+%PYTHON% -m pip install . --no-deps --no-build-isolation --ignore-installed -vv

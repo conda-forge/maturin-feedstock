@@ -11,4 +11,4 @@ export RUSTUP_HOME=${CARGO_HOME}/rustup
 rustc --version
 
 # Install wheel manually
-$PYTHON -m pip install . --no-deps --ignore-installed -vv
+$PYTHON -m pip install . --no-deps --no-build-isolation --ignore-installed -vv
