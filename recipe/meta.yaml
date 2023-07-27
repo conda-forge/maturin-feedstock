@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "0.12.20" %}
+{% set version = "0.12.15" %}
 
 package:
   name: {{ name }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 62ef15831f14330aa426c2ccc475c5b8d473bb52731e478e0cb9ab37e137d758
+  sha256: 2ca6222ae70276ba2f2d0c7296804bf62db87fec73198f274f8c1729a3f6c8e5
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py==27]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
@@ -22,14 +22,11 @@ requirements:
     - {{ compiler('c') }}              # [unix]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('rust') }}
-    - openssl                          # [unix]
   host:
     - pip
-    - setuptools-rust
-    - wheel
+    - setuptools <=60.10.0
     - python
     - tomli >=1.1.0
-    - openssl                          # [unix]
   run:
     - python
     - tomli >=1.1.0
