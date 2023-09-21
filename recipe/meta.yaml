@@ -10,7 +10,7 @@ source:
   sha256: ef3f42af453d64f233b99543c3001bee645019a9c2022c7972210a9cacb5301f
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py==27]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
