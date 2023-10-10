@@ -62,7 +62,7 @@ outputs:
         - setuptools
         - setuptools-rust 1.5.2
         - wheel
-        - tomli 2.0.1                       # [py<311]
+        - tomli                       # [py<311]
       run:
         - python
         - tomli >=1.1.0                # [py<311]
