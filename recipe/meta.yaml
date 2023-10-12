@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "0.14.17" %}
+{% set version = "1.3.0" %}
 
 package:
   name: {{ name }}-suite
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: fb4e3311e8ce707843235fbe8748a05a3ae166c3efd6d2aa335b53dfc2bd3b88
+  sha256: f6c69bc7ae147a5effd55587447b35cab1ceb726ba244d08698bc7518b8688ac
 
 build:
   number: 0
@@ -31,9 +31,9 @@ outputs:
         - pip
         - python
         - setuptools
-        - setuptools-rust 1.5.2
+        - setuptools-rust
         - wheel
-        - tomli                       # [py<311]
+        - tomli                 # [py<311]
       run:
         - python
         - tomli >=1.1.0               # [py<311]
@@ -60,9 +60,9 @@ outputs:
         - pip
         - python
         - setuptools
-        - setuptools-rust 1.5.2
+        - setuptools-rust
         - wheel
-        - tomli                        # [py<311]
+        - tomli                       # [py<311]
       run:
         - python
         - tomli >=1.1.0                # [py<311]
