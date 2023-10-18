@@ -23,6 +23,7 @@ requirements:
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('rust') }}
     - openssl                          # [unix]
+    - pkg-config                       # [unix]
   host:
     - pip
     - setuptools-rust
