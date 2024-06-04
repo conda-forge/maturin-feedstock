@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "1.5.1" %}
+{% set version = "1.6.0" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3dd834ece80edb866af18cbd4635e0ecac40139c726428d5f1849ae154b26dca
+  sha256: b955025c24c8babc808db49e0ff90db8b4b1320dcc16b14eb26132841737230d
 
 build:
   number: 0
@@ -20,7 +20,9 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}              # [unix]
+    - {{ stdlib("c") }}                # [unix]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('rust') }}
     - openssl                          # [unix]
     - pkg-config                       # [unix]
