@@ -1,8 +1,10 @@
 channel_sources:
-- conda-forge/label/python_rc,conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 m2w64_c_compiler:
+- m2w64-toolchain
+m2w64_c_stdlib:
 - m2w64-toolchain
 pin_run_as_build:
   python:
@@ -12,6 +14,8 @@ python:
 - 3.12.* *_cpython
 rust_compiler:
 - rust
+rust_compiler_version:
+- '1.74'
 target_platform:
 - win-64
 zip_keys:
