@@ -3,7 +3,7 @@ BUILD:
 c_compiler:
 - gcc
 c_compiler_version:
-- '12'
+- '13'
 cdt_arch:
 - aarch64
 cdt_name:
@@ -24,6 +24,3 @@ rust_compiler:
 - rust
 target_platform:
 - linux-aarch64
-zip_keys:
-- - python
-  - channel_sources
