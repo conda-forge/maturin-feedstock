@@ -16,7 +16,7 @@ source:
 
 build:
   number: 1
-  skip: "is_python_min != 'true'"
+  skip: "not match(python, python_min + '.*')"
   script:
     interpreter: nu
     env:
