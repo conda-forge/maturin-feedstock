@@ -18,12 +18,12 @@ build:
   number: 1
   skip: "not match(python, python_min + '.*')"
   script:
-    interpreter: nu
     env:
       MATURIN_SETUP_ARGS: "--no-default-features --features=cli-completion,log,scaffolding,upload,native-tls"
       CARGO_NET_GIT_FETCH_WITH_CLI: "true"
     content:
-      - cargo build --release
+      - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+      - cargo build --release --locked
       - ./target/release/maturin build --release --out dist
       - "${{ PYTHON }} -m pip install maturin --find-links ./dist/"
 
@@ -38,7 +38,7 @@ build:
 
 requirements:
   build:
-    - nushell
+    - cargo-bundle-licenses
     - "${{ compiler('c') }}"
     - "${{ stdlib('c') }}"
     - "${{ compiler('rust') }}"
