@@ -23,7 +23,8 @@ build:
       CARGO_NET_GIT_FETCH_WITH_CLI: "true"
     content:
       - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-      - cargo run  --locked --target-dir=tmp-target -- build --release --release --out dist
+      - cargo install --locked --path . --root=bin
+      - ./bin/maturin build --release --release --out dist
       - "${{ PYTHON }} -m pip install maturin --find-links ./dist/"
 
   dynamic_linking:
