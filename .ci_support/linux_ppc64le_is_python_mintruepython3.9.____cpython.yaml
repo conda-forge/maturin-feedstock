@@ -18,6 +18,12 @@ is_python_min:
 - true
 openssl:
 - '3'
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- 3.9.* *_cpython
 python_min:
 - '3.9'
 rust_compiler:
@@ -26,3 +32,6 @@ rust_compiler_version:
 - '1.74'
 target_platform:
 - linux-ppc64le
+zip_keys:
+- - python
+  - is_python_min

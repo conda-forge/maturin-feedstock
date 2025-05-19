@@ -8,11 +8,8 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_is_python_minfalse:
-        CONFIG: win_64_is_python_minfalse
-        UPLOAD_PACKAGES: 'True'
-      win_64_is_python_mintrue:
-        CONFIG: win_64_is_python_mintrue
+      win_64_is_python_mintruepython3.9.____cpython:
+        CONFIG: win_64_is_python_mintruepython3.9.____cpython
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables:

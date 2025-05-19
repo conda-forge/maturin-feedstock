@@ -16,7 +16,7 @@ source:
 
 build:
   number: 1
-  skip: "not is_python_min"
+  skip: "is_python_min != 'true'"
   script:
     interpreter: nu
     env:
@@ -45,10 +45,10 @@ requirements:
     - "${{ compiler('rust') }}"
     - if: build_platform != target_platform
       then:
-        - "python ${{ python_min }}.*"
+        - python
         - cross-python_${{ target_platform }}
   host:
-    - "python ${{ python_min }}.*"
+    - python
     - pip
     - if: unix
       then:
