@@ -19,6 +19,8 @@ build:
   # we only build 1 package for each target platform
   # so only trigger the build on the lowest python version
   skip: "not match(python, python_min + '.*')"
+  # the `is_python_min` currently has a rendering bug, so do not use is_python_min
+  # until conda-smithy/issues/2320 is fixed
   python:
     version_independent: true
 
