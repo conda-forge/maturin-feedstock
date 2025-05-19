@@ -16,7 +16,12 @@ source:
 
 build:
   number: 1
+  # we only build 1 package for each target platform
+  # so only trigger the build on the lowest python version
   skip: "not match(python, python_min + '.*')"
+  python:
+    version_independent: true
+
   script:
     env:
       MATURIN_SETUP_ARGS: "--no-default-features --features=full,native-tls,password-storage"
@@ -31,9 +36,6 @@ build:
       - if: osx
         then:
           - /usr/lib/libresolv.9.dylib
-
-  python:
-    version_independent: true
 
 requirements:
   build:
@@ -63,6 +65,7 @@ requirements:
 
   ignore_run_exports:
     from_package:
+      # avoid run_requirements on cpython abi
       - cross-python_${{ target_platform }}
 
 tests:
