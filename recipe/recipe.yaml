@@ -12,18 +12,26 @@ package:
 
 source:
   url: https://pypi.org/packages/source/m/maturin/maturin-${{ version }}.tar.gz
-  sha256: 0e0dc2e0bfaa2e1bd238e0236cf8a2b7e2250ccaa29c1aa8d0e61fa664b0289d
+  sha256: "0e0dc2e0bfaa2e1bd238e0236cf8a2b7e2250ccaa29c1aa8d0e61fa664b0289d"
 
 build:
   number: 1
   skip: "is_python_min != 'true'"
   script:
     interpreter: nu
+    env:
+      MATURIN_SETUP_ARGS: "--no-default-features --features=cli-completion,log,scaffolding,upload,native-tls"
     content:
       - cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml
       - cargo build
       - ./target/debug/maturin build --release
       - "python -m pip install . -vv  --no-deps dist/*.whl"
+
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: osx
+        then:
+          - /usr/lib/libresolv.9.dylib
 
   python:
     version_independent: true
@@ -60,8 +68,6 @@ tests:
   - python:
       imports:
         - maturin
-      requirements:
-        - python
   - script:
       - maturin --help
 
