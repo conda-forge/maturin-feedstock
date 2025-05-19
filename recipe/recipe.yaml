@@ -24,7 +24,7 @@ build:
     content:
       - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
       - cargo install --locked --path . --root=bin
-      - ./bin/maturin build --release --release --out dist
+      - ./bin/bin/maturin build --release --release --out dist
       - "${{ PYTHON }} -m pip install maturin --find-links ./dist/"
 
   dynamic_linking:
