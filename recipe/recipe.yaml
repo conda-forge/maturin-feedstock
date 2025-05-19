@@ -19,7 +19,7 @@ build:
   skip: "not match(python, python_min + '.*')"
   script:
     env:
-      MATURIN_SETUP_ARGS: "--no-default-features --features=cli-completion,log,scaffolding,upload,native-tls"
+      MATURIN_SETUP_ARGS: "--no-default-features --features=full,native-tls,password-storage"
       CARGO_NET_GIT_FETCH_WITH_CLI: "true"
       OPENSSL_NO_VENDOR: "1"
     content:
