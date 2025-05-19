@@ -24,20 +24,7 @@ build:
       OPENSSL_NO_VENDOR: "1"
     content:
       - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-
-      - if: unix
-        then: |
-          export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=$CC
-          export CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER=$CC
-          export CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER=$CC
-          cargo run --locked --release -- build --release --out dist
-
-      - if: win
-        then:
-          - cargo install --locked --path . --root=bin
-          - bin\bin\maturin.exe build --release --out dist
-
-      - "${{ PYTHON }} -m pip install maturin --find-links ./dist/"
+      - "${{ PYTHON }} -m pip install -v --use-pep517 --no-build-isolation ."
 
   dynamic_linking:
     missing_dso_allowlist:
@@ -61,6 +48,10 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
+    - setuptools-rust >=1.4.0
+    - wheel
+    - tomli >=1.1.0
     - if: unix
       then:
         - openssl
