@@ -22,14 +22,15 @@ build:
       MATURIN_SETUP_ARGS: "--no-default-features --features=cli-completion,log,scaffolding,upload,native-tls"
       CARGO_NET_GIT_FETCH_WITH_CLI: "true"
       OPENSSL_NO_VENDOR: "1"
-      CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER: "${{ env.get('CC') }}"
-      CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER: "${{ env.get('CC') }}"
-      CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER: "${{ env.get('CC') }}"
     content:
       - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
 
       - if: unix
-        then: cargo run --locked --release -- build --release --out dist
+        then: |
+        export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=$CC
+        export CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER=$CC
+        export CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER=$CC
+        cargo run --locked --release -- build --release --out dist
 
       - if: win
         then:
