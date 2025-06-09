@@ -4,7 +4,7 @@ schema_version: 1
 
 context:
   name: maturin
-  version: "1.8.6"
+  version: "1.8.7"
 
 package:
   name: "${{ name }}"
@@ -12,10 +12,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/m/maturin/maturin-${{ version }}.tar.gz
-  sha256: "0e0dc2e0bfaa2e1bd238e0236cf8a2b7e2250ccaa29c1aa8d0e61fa664b0289d"
+  sha256: "96c76353f94a153c5dc1a9d3916e75fcd17e6bf216a06dcdc2f84b9f98f374af"
 
 build:
-  number: 1
+  number: 0
   # we only build 1 package for each target platform
   # so only trigger the build on the lowest python version
   skip: "not match(python, python_min + '.*')"
