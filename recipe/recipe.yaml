@@ -15,7 +15,7 @@ source:
   sha256: "235163a0c99bc6f380fb8786c04fd14dcf6cd622ff295ea3de525015e6ac40cf"
 
 build:
-  number: 0
+  number: 1
   # we only build 1 package for each target platform
   # so only trigger the build on the lowest python version
   skip: "not match(python, python_min + '.*')"
