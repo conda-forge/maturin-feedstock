@@ -1,0 +1,49 @@
+From 053333cbd0782918fb608fd7a27ac6359e311d23 Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <xhochy@users.noreply.github.com>
+Date: Tue, 2 Sep 2025 21:06:01 +0200
+Subject: [PATCH 1/2] search_lib_dir: Only recurse into `build*` if it is a
+ directory.
+
+This avoids issues with Python 3.14 and cross-compiling where there is a `build-details.json` file now.
+---
+ src/cross_compile.rs | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/cross_compile.rs b/src/cross_compile.rs
+index 850235286..bf02d8e3f 100644
+--- a/src/cross_compile.rs
++++ b/src/cross_compile.rs
+@@ -153,7 +153,9 @@ fn search_lib_dir(path: impl AsRef<Path>, target: &Target) -> Result<Vec<PathBuf
+     for f in fs::read_dir(path.as_ref())? {
+         let sysc = match &f {
+             Ok(f) if starts_with(f, "_sysconfigdata") && ends_with(f, "py") => vec![f.path()],
+-            Ok(f) if starts_with(f, "build") => search_lib_dir(f.path(), target)?,
++            Ok(f) if starts_with(f, "build") && f.path().is_dir() => {
++                search_lib_dir(f.path(), target)?
++            },
+             Ok(f) if starts_with(f, "lib.") => {
+                 let name = f.file_name();
+                 // check if right target os
+
+From dcb38ca78bd157ac431864e8330a3df35ac34f9c Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <xhochy@users.noreply.github.com>
+Date: Tue, 2 Sep 2025 21:07:11 +0200
+Subject: [PATCH 2/2] Fix lint
+
+---
+ src/cross_compile.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/cross_compile.rs b/src/cross_compile.rs
+index bf02d8e3f..039a28eff 100644
+--- a/src/cross_compile.rs
++++ b/src/cross_compile.rs
+@@ -155,7 +155,7 @@ fn search_lib_dir(path: impl AsRef<Path>, target: &Target) -> Result<Vec<PathBuf
+             Ok(f) if starts_with(f, "_sysconfigdata") && ends_with(f, "py") => vec![f.path()],
+             Ok(f) if starts_with(f, "build") && f.path().is_dir() => {
+                 search_lib_dir(f.path(), target)?
+-            },
++            }
+             Ok(f) if starts_with(f, "lib.") => {
+                 let name = f.file_name();
+                 // check if right target os
