@@ -27,6 +27,7 @@ build:
       OPENSSL_NO_VENDOR: "1"
     content:
       - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+      - ${{ "export OPENSSL_DIR=$PREFIX" if unix }}
       - "${{ PYTHON }} -m pip install -v --use-pep517 --no-build-isolation ."
 
   dynamic_linking:
