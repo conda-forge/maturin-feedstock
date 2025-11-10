@@ -15,12 +15,8 @@ source:
   sha256: "2c2ae37144811d365509889ed7220b0598487f1278c2441829c3abf56cc6324a"
 
 build:
-  number: 0
-  # we only build 1 package for each target platform
-  # so only trigger the build on the lowest python version
-  skip: "not match(python, python_min + '.*')"
-  # the `is_python_min` currently has a rendering bug, so do not use is_python_min
-  # until conda-smithy/issues/2320 is fixed
+  number: 1
+  skip: not is_python_min
   python:
     version_independent: true
 
@@ -31,6 +27,7 @@ build:
       OPENSSL_NO_VENDOR: "1"
     content:
       - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+      - ${{ "export OPENSSL_DIR=$PREFIX" if unix }}
       - "${{ PYTHON }} -m pip install -v --use-pep517 --no-build-isolation ."
 
   dynamic_linking:
