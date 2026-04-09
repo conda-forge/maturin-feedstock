@@ -4,7 +4,7 @@ schema_version: 1
 
 context:
   name: maturin
-  version: "1.13.0"
+  version: "1.13.1"
 
 package:
   name: "${{ name }}"
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/m/maturin/maturin-${{ version }}.tar.gz
-  sha256: "96c7b56013137f26de67a98cac8c6e544fb640ea650d5ded53fbe5327f72108f"
+  sha256: "9a87ff3b8e4d1c6eac33ebfe8e261e8236516d98d45c0323550621819b5a1a2f"
 
 build:
   number: 0
