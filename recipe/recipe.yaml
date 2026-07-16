@@ -15,7 +15,7 @@ source:
   sha256: "9d6577a62cd08e0ceba7a0db06fb098e0c9b1b3429bad747a4f3a18215a1b3df"
 
 build:
-  number: 0
+  number: 1
   skip: not is_python_min
   python:
     version_independent: true
@@ -28,6 +28,11 @@ build:
     content:
       - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
       - ${{ "export OPENSSL_DIR=$PREFIX" if unix }}
+      # Newer rustc (1.96, but not yet 1.91) links linux-gnu targets with its bundled
+      # rust-lld, which cannot handle the inline-PLT relocations (R_PPC64_PLTSEQ/
+      # R_PPC64_PLTCALL) gcc emits on ppc64le for the -fno-plt in conda-forge's
+      # CFLAGS; use binutils ld instead.
+      - ${{ 'export CARGO_BUILD_RUSTFLAGS="${CARGO_BUILD_RUSTFLAGS:-} -C link-arg=-fuse-ld=bfd"' if linux }}
       - "${{ PYTHON }} -m pip install -v --use-pep517 --no-build-isolation ."
 
   dynamic_linking:
