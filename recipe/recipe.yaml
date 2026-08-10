@@ -55,13 +55,14 @@ requirements:
     - python
     - pip
     - setuptools
-    - setuptools-rust >=1.4.0
-    - wheel
+    - setuptools-rust >=1.11.0
     - tomli >=1.1.0
+    - wheel
     - if: unix
       then:
         - openssl
         - pkg-config
+        - puccinialin
   run:
     # do we really need python here?
     - python
