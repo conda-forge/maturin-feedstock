@@ -74,73 +74,31 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-How to use
-----------
-
-<details>
-<summary>With conda</summary>
+Once the `conda-forge` channel has been enabled, `maturin` can be installed with `conda`:
 
 ```
 conda install maturin
 ```
 
-</details>
-
-<details>
-<summary>With mamba</summary>
+or with `mamba`:
 
 ```
 mamba install maturin
 ```
 
-</details>
-
-<details>
-<summary>With pixi</summary>
-
-```
-# for adding to your local project
-pixi add maturin
-# for installing globally
-pixi global install maturin
-```
-
-</details>
-
-Search package versions
------------------------
-
-It is possible to list all of the versions of `maturin` available on your platform:
-
-<details>
-<summary>With conda</summary>
+It is possible to list all of the versions of `maturin` available on your platform with `conda`:
 
 ```
 conda search maturin --channel conda-forge
 ```
 
-</details>
-
-<details>
-<summary>With mamba</summary>
+or with `mamba`:
 
 ```
 mamba search maturin --channel conda-forge
 ```
 
-</details>
-
-<details>
-<summary>With pixi</summary>
-
-```
-pixi search maturin --channel conda-forge
-```
-
-</details>
-
-<details>
-<summary>With mamba repoquery, which may provide more information</summary>
+Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
@@ -152,8 +110,6 @@ mamba repoquery whoneeds maturin --channel conda-forge
 # List dependencies of `maturin`:
 mamba repoquery depends maturin --channel conda-forge
 ```
-
-</details>
 
 
 About conda-forge
