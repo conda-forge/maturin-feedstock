@@ -15,7 +15,7 @@ source:
   sha256: "9d6577a62cd08e0ceba7a0db06fb098e0c9b1b3429bad747a4f3a18215a1b3df"
 
 build:
-  number: 1
+  number: 2
   skip: not is_python_min
   python:
     version_independent: true
@@ -55,13 +55,14 @@ requirements:
     - python
     - pip
     - setuptools
-    - setuptools-rust >=1.4.0
-    - wheel
+    - setuptools-rust >=1.11.0
     - tomli >=1.1.0
+    - wheel
     - if: unix
       then:
         - openssl
         - pkg-config
+        - puccinialin
   run:
     # do we really need python here?
     - python
