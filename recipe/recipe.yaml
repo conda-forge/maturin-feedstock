@@ -3,11 +3,10 @@
 schema_version: 1
 
 context:
-  name: maturin
   version: "1.15.0"
 
 package:
-  name: "${{ name }}"
+  name: maturin
   version: "${{ version }}"
 
 source:
@@ -15,7 +14,7 @@ source:
   sha256: "94b26cc8e8aba61a5f2099715fe640e18c5f678e9a500408b38761263954228a"
 
 build:
-  number: 0
+  number: 1
   skip: not is_python_min
   python:
     version_independent: true
@@ -67,14 +66,9 @@ requirements:
     - python
     - tomli >=1.1.0
 
-  ignore_run_exports:
-    from_package:
-      # avoid run_requirements on cpython abi
-      - cross-python_${{ target_platform }}
-
 tests:
   - python:
-      python_version: "${{ python_min }}.*"
+      python_version: ${{ python_min }}.*
       imports:
         - maturin
   - script:
