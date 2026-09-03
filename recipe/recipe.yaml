@@ -14,7 +14,7 @@ source:
   sha256: "94b26cc8e8aba61a5f2099715fe640e18c5f678e9a500408b38761263954228a"
 
 build:
-  number: 1
+  number: 2
   skip: not is_python_min
   python:
     version_independent: true
