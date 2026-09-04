@@ -70,7 +70,8 @@ tests:
   - python:
       python_version:
         - ${{ python_min }}.*
-        - "*"
+        # not tested due to pip-check error (#188)
+        # - "*"
       imports:
         - maturin
   - script:
