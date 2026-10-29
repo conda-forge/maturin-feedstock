@@ -1,3 +1,5 @@
+DOCKER_PLATFORM:
+- linux/amd64
 c_compiler:
 - gcc
 c_compiler_version:
@@ -27,8 +29,7 @@ python_min:
 rust_compiler:
 - rust
 target_platform:
-- linux-64
+- linux-ppc64le
 zip_keys:
 - - python
   - is_python_min
-  - channel_sources
